@@ -44,17 +44,17 @@ jobs:
       - run:
           name: Docker build
           command: |
-            docker build -t node-app .
+            docker build -t react-app .
       - run:
           name: Tag Docker image
           command: |
             latest_tag=$(git describe --tags --abbrev=0)
-            docker tag node-app asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/social-media-api/social-media-api-image:${latest_tag}
+            docker tag react-app asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/weather-app/weather-app-image:${latest_tag}
       - run:
           name: Push docker image
           command: |
             latest_tag=$(git describe --tags --abbrev=0)
-            docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/social-media-api/social-media-api-image:${latest_tag}
+            docker push asia-south1-docker.pkg.dev/$GOOGLE_PROJECT_ID/weather-app/weather-app-image:${latest_tag}
   deploy:
     docker:
       - image: google/cloud-sdk
